@@ -7,8 +7,8 @@ import DropDownMenu from './DropDownMenu'
 
 function NavBar() {
   return (
-    <nav className='border-b'>
-          <Container className='flex flex-col sm:flex-row sm:justify-between sm:items-center flex-wrap gap-4 py-6 max-sm:mx-4'>
+    <nav>
+          <Container className='flex flex-col sm:flex-row sm:justify-between sm:items-center flex-wrap gap-4 py-8 max-sm:mx-4'>
              <Logo />
              <Suspense>
                <SearchBar />

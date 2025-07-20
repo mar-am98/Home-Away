@@ -10,9 +10,11 @@ function Categories({search,category}:{search:string,category:string}) {
         categoriesItem.map((item)=>{
           const searchTerm = search ? `&search=${search}` : '';
           const categoryTerm = `/?category=${item.name}`;
+          const isActive = category === item.name
           return(
             <Link href={`${categoryTerm}${searchTerm}`} key={item.name}>
-              <div className='flex flex-col justify-center items-center text-xl hover:text-primary cursor-pointer active:text-primary'>
+              <div className={`flex flex-col justify-center items-center text-xl cursor-pointer 
+                              ${isActive ? 'text-primary font-bold' : 'hover:text-primary active:text-primary'} transition-colors ease-in-out duration-200`}>
                 <div className="text-3xl">
                   {item.icon}
                 </div>

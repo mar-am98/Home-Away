@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ReviewsPaage() {
+function ReviewsPage() {
   return (
-    <div>ReviewsPaage</div>
+    <div>ReviewsPage</div>
   )
 }
 
-export default ReviewsPaage
+export default ReviewsPage

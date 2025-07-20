@@ -13,14 +13,14 @@ type Props = {
 
 async function Home({searchParams}:Props) {
 
-  const {search = '' } = await searchParams || '';
-  const { category = '' } = await searchParams || '';
+  const {search = '' } = await searchParams;
+  const { category = '' } = await searchParams;
 
   return (
     <section className="p-10">
       <Categories category={category} search={search}/>
       <Suspense fallback={<HeroLoading />}>
-        <PropertiesContainer search={search}/>
+        <PropertiesContainer search={search} category={category}/>
       </Suspense>
     </section>
   )

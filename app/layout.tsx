@@ -4,6 +4,7 @@ import "./globals.css";
 import Container from "@/components/global/Container";
 import NavBar from "@/components/navbar/NavBar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Separator } from "@/components/ui/separator";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange >
           <NavBar />
+          <Separator />
           <Container>
             {children}
           </Container>
