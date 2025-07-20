@@ -1,3 +1,4 @@
+import { PageProps } from 'next'
 import FavoriteToggleButton from '@/components/favorites/FavoriteToggleButton';
 import CrumbBread from '@/components/single-page/CrumbBread'
 import DescDetails from '@/components/single-page/DescDetails';
@@ -10,7 +11,7 @@ import Image from 'next/image';
 import React from 'react'
 import { CiShare2 } from 'react-icons/ci';
 
-async function PropertiesDetails({params}:{params: {id:string}}) {
+async function PropertiesDetails({params}:PageProps<{id:string}>) {
 
   const {id} = await params;
   const property = await fetchSingleProperty(id);

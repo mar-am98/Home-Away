@@ -2,19 +2,14 @@ import { HeroLoading } from "@/components/global/LoadingContainer";
 import Categories from "@/components/home/Categories";
 import PropertiesContainer from "@/components/home/PropertiesContainer";
 import React, { Suspense } from "react";
+import { PageProps } from 'next'
 
 
-type Props = {
-  searchParams:{
-    search?: string,
-    category?: string
-  }
-}
 
-async function Home({searchParams}:Props) {
+async function Home({searchParams}:PageProps<{search?:string; category?:string}>) {
 
-  const {search = '' } = await searchParams;
-  const { category = '' } = await searchParams;
+  const {search} = await searchParams || '';
+  const { category} = await searchParams || '';
 
   return (
     <section className="p-10">
