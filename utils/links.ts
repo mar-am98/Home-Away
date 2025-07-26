@@ -10,8 +10,8 @@ export const dropDownMenuLinks:LinksProp[] = [
     {href:'/bookings' , name:'Bookings'},
     {href:'/reviews' , name:'Reviews'},
     {href:'/reservations' , name:'Reservations'},
-    {href:'/createRental' , name:'Create Rental'},
-    {href:'/myRentals' , name:'My Rentals'},
+    {href:'/rentals/create' , name:'Create Rental'},
+    {href:'/rentals' , name:'My Rentals'},
     {href:'/profile' , name:'Profile'}
 ]
 

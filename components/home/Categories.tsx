@@ -1,6 +1,6 @@
 import React from 'react'
-import { categoriesItem } from '@/utils/categoriesItem'
 import Link from 'next/link';
+import { categoriesItem } from '@/utils/categoriesItem';
 
 function Categories({search,category}:{search:string,category:string}) {
 

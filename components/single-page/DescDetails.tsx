@@ -19,12 +19,12 @@ function DescDetails({property}:{property:property}) {
     return (
         <div>
             <h3 className='text-lg font-bold my-3'>Description</h3>
-            <p className='text-muted-foreground font-light leading-relaxed'>
+            <p className='text-muted-foreground text-lg leading-loose'>
                 {showText}
             </p>
             {
                 hideText && (
-                    <Button onClick={handleShow} variant={'link'} >
+                    <Button onClick={handleShow} variant={'link'} className='px-0 text-primary/80' >
                         {show ? 'Show Less' : 'Show More'}
                     </Button>
                 )
