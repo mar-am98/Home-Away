@@ -24,7 +24,17 @@ model property {
   baths Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  clerckId String
+  clerkId String
   location String
   amenities String[]
+  favorites favorite[]
+}
+
+model favorite{
+  id String @id @default(uuid()) 
+  clerkId String
+  property property @relation(fields: [propertyID],references: [id],onDelete: Cascade)
+  propertyID String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
