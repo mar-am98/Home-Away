@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 
 interface RateProp{
   name: string,
-  textLabel: string
+  textLabel?: string
 }
 
 
@@ -17,11 +17,11 @@ function RatingInput({name,textLabel}:RateProp){
 
   return (
     <div className="mb-2 max-w-sm">
-      <Label>
+      <Label className='mb-2 capitalize'>
         {textLabel || name}
       </Label>
       <Select defaultValue={num[0]} name={name} required>
-        <SelectTrigger>
+        <SelectTrigger className='min-w-100'>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
