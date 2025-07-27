@@ -14,7 +14,7 @@ function PropertyCard({property}:{property:property}) {
     const price$ = FormatCurrency(price);
 
     return (
-        <Card className='h-full rounded-xl transition-all hover:shadow-lg  p-1 overflow-hidden cursor-pointer duration-300 ease-in-out'>
+        <Card className='h-full rounded-xl transition-all hover:shadow-lg  p-1 overflow-hidden cursor-pointer duration-300 ease-in-out dark:hover:shadow-gray-950'>
             <CardContent className='p-1 h-full relative'>
                 <Link href={`${pageLinks.PROPERTIES.href}/${property.id}`}>
                     <div className='relative w-full  max-lg:h-60 h-67'>

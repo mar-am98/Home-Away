@@ -33,7 +33,7 @@ async function PropertiesDetails({params}:any) {
       </div>
 
       <div className='relative w-full h-120'>
-        <Image src={property.image} alt={property.name} fill quality={100} className='rounded mt-4' priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>     
+        <Image src={property.image} alt={property.name} fill quality={100} className='object-cover rounded mt-4' priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>     
       </div>
 
       <section className='h-200 grid-cols-1 lg:grid lg:grid-cols-[2fr_1fr] gap-12 mt-12'>
