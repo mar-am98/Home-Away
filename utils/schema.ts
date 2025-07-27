@@ -10,7 +10,7 @@ export const rentalSchema = z.object({
                     }),
     tagLine: z.string().refine((tagLine)=>{
                         const words = tagLine.split(" ").length;
-                        return words >= 4 && words <= 8
+                        return words >= 6 && words <= 10
                     },{
                         message:'tagLine must be between 5 to 10 words.'
                     }),
