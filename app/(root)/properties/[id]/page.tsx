@@ -3,15 +3,14 @@ import FavoriteToggleButton from '@/components/favorites/FavoriteToggleButton';
 import CrumbBread from '@/components/single-page/CrumbBread'
 import DescDetails from '@/components/single-page/DescDetails';
 import PlaceOffer from '@/components/single-page/PlaceOffer';
+import ShareButton from '@/components/single-page/ShareButton';
 import StayDetails from '@/components/single-page/StayDetails';
 import StayLocation from '@/components/single-page/StayLocation';
 import UserDetails from '@/components/single-page/UserDetails';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { fetchSingleProperty } from '@/utils/actions';
 import Image from 'next/image';
 import React from 'react'
-import { CiShare2 } from 'react-icons/ci';
 
 async function PropertiesDetails({params}:any) {
 
@@ -25,9 +24,7 @@ async function PropertiesDetails({params}:any) {
       <div className='flex justify-between items-center'>
         <h1 className='py-4 text-4xl font-bold capitalize'>{property.tagLine}</h1>
         <div className='flex gap-2'>
-          <Button size={'icon'} variant={'outline'} className='cursor-pointer'>
-            <CiShare2 />
-          </Button>
+          <ShareButton id={id} name={property.name}/>
           <FavoriteToggleButton propertyID={property.id} />
         </div>
       </div>
