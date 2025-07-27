@@ -5,6 +5,7 @@ import db from './db'
 import { currentUser } from '@clerk/nextjs/server';
 import { imageSchema, rentalSchema, validateSchema } from './schema';
 import { uploadImage } from './supabase';
+import { revalidatePath } from 'next/cache';
 
 export async function fetchProperty({search ='',category}:{search:string,category:string}){
     const property = await db.property.findMany({
@@ -88,4 +89,71 @@ export async function createRentalForm(prevState:any,formData: FormData):Promise
     }
     
     
+}
+
+
+
+export async function fetchFavoriteID(propertyID:string){
+    const user = await getAuthUser();
+    const favorite = await db.favorite.findFirst({
+        where:{
+            propertyID: propertyID,
+            clerkId: user.id
+        },
+        select:{
+            id: true
+        }
+    })
+
+    return favorite?.id || null
+}
+
+type toggleFavActionProps = {
+    propertyID: string,
+    favoriteID: string | null,
+}
+export async function toggleFavAction(prevState:toggleFavActionProps){
+    const user = await getAuthUser();
+    const {propertyID,favoriteID} = prevState;
+
+    try{
+        if(favoriteID){
+            await db.favorite.delete({
+                where: {
+                    id: favoriteID
+                }
+            })
+        }
+        else {
+            await db.favorite.create({
+                data:{
+                    propertyID:propertyID,
+                    clerkId: user.id,
+                }
+            })
+        }
+
+        revalidatePath('')
+
+        return {message: favoriteID ?  'Removed from Faves' : 'Added to Faves'}
+    }
+    
+    catch(e){
+        return renderError(e)
+    }
+}
+
+
+export async function fetchUserFav(){
+    const user = await getAuthUser();
+    const favorite = await db.favorite.findMany({
+        where:{
+            clerkId: user.id
+        },
+        include:{
+            property: true
+        }
+    })
+
+    return favorite;
 }

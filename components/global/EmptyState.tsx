@@ -15,9 +15,9 @@ function EmptyState({heading,message,actionLabel}:EmptyProp) {
   const router = useRouter();
   return (
     <div>
-        <h3 className='text-2xl font-bold capitalize'>{heading}</h3>
-        <p className='text-xl w-120'>{message}</p>
-        <Button className='mt-6 py-6 px-8 cursor-pointer capitalize text-base'
+        <h3 className='text-2xl font-bold capitalize mb-2'>{heading}</h3>
+        <p className='text-lg w-120'>{message}</p>
+        <Button className='mt-4 p-6 cursor-pointer capitalize text-base'
                 onClick={()=>router.replace(pageLinks.HOME.href)}>
               {actionLabel}
         </Button>

@@ -16,9 +16,7 @@ async function PropertiesContainer({search,category}:{search:string,category:str
       {properties.length === 0 && <EmptyState heading={'no results.'} message='Try changing or removing some of your filters.' actionLabel='clear filters' />}
       {properties.map((property)=>{
         return(
-          <Link href={`${pageLinks.PROPERTIES.href}/${property.id}`} key={property.id}>
-            <PropertyCard property={property} />
-          </Link>
+          <PropertyCard property={property} key={property.id}/>
         )
       })}
     </section>

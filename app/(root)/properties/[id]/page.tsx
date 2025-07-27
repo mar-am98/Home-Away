@@ -28,7 +28,7 @@ async function PropertiesDetails({params}:any) {
           <Button size={'icon'} variant={'outline'} className='cursor-pointer'>
             <CiShare2 />
           </Button>
-          <FavoriteToggleButton />
+          <FavoriteToggleButton propertyID={property.id} />
         </div>
       </div>
 
