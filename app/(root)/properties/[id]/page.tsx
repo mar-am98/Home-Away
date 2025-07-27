@@ -1,5 +1,6 @@
 
 import FavoriteToggleButton from '@/components/favorites/FavoriteToggleButton';
+import RatingInput from '@/components/reviews/RatingInput';
 import CrumbBread from '@/components/single-page/CrumbBread'
 import DescDetails from '@/components/single-page/DescDetails';
 import PlaceOffer from '@/components/single-page/PlaceOffer';
@@ -33,7 +34,7 @@ async function PropertiesDetails({params}:any) {
         <Image src={property.image} alt={property.name} fill quality={100} className='object-cover rounded mt-4' priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>     
       </div>
 
-      <section className='h-200 grid-cols-1 lg:grid lg:grid-cols-[2fr_1fr] gap-12 mt-12'>
+      <div className='h-200 grid-cols-1 lg:grid lg:grid-cols-[2fr_1fr] gap-12 mt-12'>
         <div>
           <StayDetails property={property}/>
           <UserDetails />
@@ -42,10 +43,15 @@ async function PropertiesDetails({params}:any) {
           <PlaceOffer property={property}/>
           <StayLocation property={property} />
         </div>
+        
         <div>
           
         </div>
-      </section>
+      </div>
+
+      {/* <div>
+        
+      </div> */}
     </section>
   )
 }

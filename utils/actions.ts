@@ -157,3 +157,14 @@ export async function fetchUserFav(){
 
     return favorite;
 }
+
+
+
+export async function createReviewAction(
+    prevState:any,
+    formData:FormData
+){
+    return{
+        message:"Review Submitted!"
+    }
+}
