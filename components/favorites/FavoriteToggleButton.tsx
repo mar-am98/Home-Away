@@ -8,9 +8,11 @@ import { fetchFavoriteID } from '@/utils/actions';
 
 async function FavoriteToggleButton({propertyID}:{propertyID:string}) {
   const {userId} = await auth();
-  const fetchID = await fetchFavoriteID(propertyID);
 
   if(!userId) return <CardSignButton />
+  const fetchID = await fetchFavoriteID(propertyID);
+
+  
   return (
     <FavoriteToggleForm propertyID={propertyID} favoriteID={fetchID}/>
   )
