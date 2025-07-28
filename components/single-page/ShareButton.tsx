@@ -13,7 +13,7 @@ function ShareButton({id,name}:{id:string,name:string}) {
     <Popover>
         <PopoverTrigger asChild>
             <Button className='p-2 text-black' variant={'outline'} size={'icon'}>
-                <Share2 />
+                <Share2 className='dark:text-white'/>
             </Button>
         </PopoverTrigger>
         <PopoverContent side='top' align='center' sideOffset={10} className='flex items-center p-2 gap-2 justify-center w-full'>

@@ -43,7 +43,7 @@ model favorite{
 model review{
   id String @id @default(uuid())
   clerkId String
-  rating String
+  rating Int
   comment String
   authorName String
   authorImageUrl String

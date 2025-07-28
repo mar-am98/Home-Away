@@ -7,11 +7,13 @@ import FormatCurrency from '@/utils/formats';
 import PropertyRating from '../single-page/PropertyRating';
 import Link from 'next/link';
 import { pageLinks } from '@/utils/links';
+import { fetchReviewStats } from '@/utils/actions';
 
-function PropertyCard({property}:{property:property}) {
+async function PropertyCard({property}:{property:property}) {
     
     const {image,name,tagLine,price,location} = property;
     const price$ = FormatCurrency(price);
+    const stats = await fetchReviewStats(property.id)
 
     return (
         <Card className='h-full rounded-xl transition-all hover:shadow-lg  p-1 overflow-hidden cursor-pointer duration-300 ease-in-out dark:hover:shadow-gray-950'>
@@ -30,7 +32,7 @@ function PropertyCard({property}:{property:property}) {
                     <div className='mt-4 mx-3'>
                         <div className='flex justify-between items-center text-sm font-semibold truncate'>
                             <h3 className="truncate font-bold">{name}</h3>
-                            <p className='font-medium text-muted-foreground'><PropertyRating /></p>
+                            <p className='font-medium text-muted-foreground'><PropertyRating stats={stats}/></p>
                         </div>
 
                         <p className='text-sm font-medium text-muted-foreground mt-1'>{tagLine}</p>

@@ -3,9 +3,10 @@
 import { redirect } from 'next/navigation';
 import db from './db'
 import { currentUser } from '@clerk/nextjs/server';
-import { imageSchema, rentalSchema, validateSchema } from './schema';
+import { imageSchema, rentalSchema, reviewSchema, validateSchema } from './schema';
 import { uploadImage } from './supabase';
 import { revalidatePath } from 'next/cache';
+import { pageLinks } from './links';
 
 export async function fetchProperty({search ='',category}:{search:string,category:string}){
     const property = await db.property.findMany({
@@ -69,13 +70,13 @@ export async function createRentalForm(prevState:any,formData: FormData):Promise
         const allData = {...Object.fromEntries(formData), amenities}
 
 
-        const validateData = validateSchema(rentalSchema,allData);
+        const validateFields = validateSchema(rentalSchema,allData);
         const validateImage = validateSchema(imageSchema,{image:file});
         const imagePath = await uploadImage(validateImage.image)
 
         await db.property.create({
             data:{
-                ...validateData,
+                ...validateFields,
                 amenities,
                 image: imagePath,
                 clerkId: user.id
@@ -164,7 +165,112 @@ export async function createReviewAction(
     prevState:any,
     formData:FormData
 ){
-    return{
-        message:"Review Submitted!"
+    const user = await getAuthUser();
+    try{
+        const data = Object.fromEntries(formData);
+        const validateFields = reviewSchema.safeParse(data)
+
+        if(!validateFields.success){
+            const errors = validateFields.error.issues.map((error)=>error.message);
+            return {message: `Error: ${errors.join(',')}`}
+        }
+
+        await db.review.create({
+            data: {
+                ...validateFields.data,
+                clerkId: user.id
+            }
+        })
+
+        revalidatePath(`/${pageLinks.PROPERTIES.href}/${validateFields.data.propertyID}`)
+    
+        return{
+            message:"Review Submitted!"
+        }
     }
+
+
+    catch(e){
+        return renderError(e)
+    }
+}
+
+export async function fetchPropertyReviews(propertyID:string){
+    const review = await db.review.findMany({
+        where:{
+            propertyID,
+        },
+        include:{
+            property:{
+                select:{
+                    image: true,
+                    name: true
+                }
+            }
+        },
+        orderBy:{
+            createdAt: 'desc'
+        }
+    })
+
+    return review;
+}
+
+export async function fetchReviewStats(propertyID:string){
+    const stats = await db.review.aggregate({
+        where:{
+            propertyID,
+        },
+        _avg:{
+            rating: true
+        },
+        _count:{
+            rating: true
+        }
+    });
+
+    return{
+        avg: stats._avg.rating || 0,
+        count: stats._count.rating
+    }
+}
+
+
+export async function fetchUserReviews(){
+    const user = await getAuthUser();
+    const reviews= await db.review.findMany({
+        where:{
+            clerkId: user.id,
+        },
+        include:{
+            property:true
+        },
+        orderBy:{
+            createdAt: 'desc'
+        }
+    })
+
+    return reviews
+}
+
+
+export async function deleteActionReview(prevState:{reviewId:string}){
+
+    const {reviewId} = prevState;
+    try{
+        await db.review.delete({
+            where:{
+                id: reviewId
+            }
+        });
+
+        return{
+            message: 'Review Removed'
+        }
+    }
+
+    catch(e){
+        return renderError(e)
+    }
+
 }

@@ -2,10 +2,21 @@
 import React from 'react'
 import { FaStar } from 'react-icons/fa';
 
-function PropertyRating({showReview = false}:{showReview?:boolean}) {
-  const rating = 4.5;
-  const countReview = 30;
+interface RateProp{
+  showReview?:boolean,
+  stats?:{
+    avg: number,
+    count: number
+  }
+}
+
+function PropertyRating({showReview = false,stats}:RateProp) {
+  const rating = stats?.avg.toFixed(1);
+  const countReview = stats?.count || 0;
+
   const reviews = `(${countReview} Reviews)`
+
+  if(!stats?.avg) return null
   return (
     <span className="flex gap-1 items-center">
         <FaStar className='w-3 h-3 text-amber-500' />

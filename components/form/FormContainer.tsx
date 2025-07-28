@@ -1,6 +1,7 @@
 'use client'
 import { actionFunction } from '@/utils/types'
-import React, { useActionState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import React, { use, useActionState, useEffect, useTransition } from 'react'
 import { toast } from 'sonner'
 
 interface FormProps{
@@ -13,12 +14,22 @@ const initialAction = {
 }
 
 function FormContainer({children,action}:FormProps) {
-    const [state,setAction] = useActionState(action,initialAction)
+    const [state,setAction] = useActionState(action,initialAction);
+
+    const [isPending, startTransition] = useTransition();
+    const router = useRouter();
 
     useEffect(()=>{
       if(state.message){
         toast(state.message)
       }
+
+      startTransition(()=>{
+        setTimeout(()=>{
+          router.refresh();
+        },0)
+      });
+      
     },[state])
 
 

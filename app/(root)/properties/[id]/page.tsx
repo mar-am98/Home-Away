@@ -1,5 +1,6 @@
 
 import FavoriteToggleButton from '@/components/favorites/FavoriteToggleButton';
+import PropertyReviews from '@/components/reviews/PropertyReviews';
 import RatingInput from '@/components/reviews/RatingInput';
 import SubmitReview from '@/components/reviews/SubmitReview';
 import CrumbBread from '@/components/single-page/CrumbBread'
@@ -10,7 +11,7 @@ import StayDetails from '@/components/single-page/StayDetails';
 import StayLocation from '@/components/single-page/StayLocation';
 import UserDetails from '@/components/single-page/UserDetails';
 import { Separator } from '@/components/ui/separator';
-import { fetchSingleProperty } from '@/utils/actions';
+import { fetchReviewStats, fetchSingleProperty } from '@/utils/actions';
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import React from 'react'
@@ -18,7 +19,11 @@ import React from 'react'
 async function PropertiesDetails({params}:any) {
 
   const {id} = await params;
-  const property = await fetchSingleProperty(id);
+
+  const [property, stats] = await Promise.all([
+    fetchSingleProperty(id),
+    fetchReviewStats(id)
+  ]);
 
   return (
     <section className='mt-12'>
@@ -38,7 +43,7 @@ async function PropertiesDetails({params}:any) {
 
       <div className='h-200 grid-cols-1 lg:grid lg:grid-cols-[2fr_1fr] gap-12 mt-12'>
         <div>
-          <StayDetails property={property}/>
+          <StayDetails property={property} stats={stats}/>
           <UserDetails />
           <Separator />
           <DescDetails property={property}/>
@@ -53,6 +58,7 @@ async function PropertiesDetails({params}:any) {
 
       <div>
         <SubmitReview id={id}/>
+        <PropertyReviews id={id}/>
       </div>
     </section>
   )

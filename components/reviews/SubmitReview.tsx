@@ -27,7 +27,7 @@ function SubmitReview({id}:{id:string}) {
                             <input type="hidden" name={'authorImageUrl'} value={user?.imageUrl || '' } />
 
                             <RatingInput name='rating' />
-                            <TextAreaInput name='comment' label='FeedBack' placeholder='Amazing place !!!' />
+                            <TextAreaInput name='comment' label='FeedBack' placeholder='Add comment..' defaultValue='Amazing Place!!!' />
                             <FormButton text='submit' />
                           </FormContainer>
                         </Card>
