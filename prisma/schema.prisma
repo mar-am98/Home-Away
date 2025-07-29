@@ -27,6 +27,8 @@ model property {
   clerkId String
   location String
   amenities String[]
+  userName String
+  userImg String
   favorites favorite[]
   reviews review[]
 }

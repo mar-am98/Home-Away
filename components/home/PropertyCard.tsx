@@ -7,13 +7,20 @@ import FormatCurrency from '@/utils/formats';
 import PropertyRating from '../single-page/PropertyRating';
 import Link from 'next/link';
 import { pageLinks } from '@/utils/links';
-import { fetchReviewStats } from '@/utils/actions';
 
-async function PropertyCard({property}:{property:property}) {
+interface propertyProps{
+    property: property,
+    stats: {
+        avg: number,
+        count: number
+    }
+}
+
+async function PropertyCard({property,stats}:propertyProps) {
     
     const {image,name,tagLine,price,location} = property;
     const price$ = FormatCurrency(price);
-    const stats = await fetchReviewStats(property.id)
+
 
     return (
         <Card className='h-full rounded-xl transition-all hover:shadow-lg  p-1 overflow-hidden cursor-pointer duration-300 ease-in-out dark:hover:shadow-gray-950'>

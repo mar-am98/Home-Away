@@ -1,13 +1,12 @@
 import { AmenitiesArray } from '@/utils/AmenityArray'
-import { property } from '@prisma/client'
 import React from 'react'
 
-function PlaceOffer({property}:{property:property}) {
+function PlaceOffer({amenities}:{amenities:string[]}) {
   return (
     <div className='my-8'>
       <h3 className='text-lg font-bold my-3'>What this place offers</h3>
       <div className='grid sm:grid-cols-2 gap-4 mt-4'>
-          {property.amenities.map((checkbox)=>{
+          {amenities.map((checkbox)=>{
               const amenity = AmenitiesArray.find((item) => item.label === checkbox)
               if (!amenity) return null 
               const Icon = amenity.icon

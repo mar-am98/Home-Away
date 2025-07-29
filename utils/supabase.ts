@@ -10,8 +10,7 @@ const supabase = createClient(
 
 export const uploadImage = async (image:File)=>{
     const timestamp = Date.now();
-    const cleanName = image.name.replace(/\s+/g, '-');
-    const newName = `${timestamp}-${cleanName}`;
+    const newName = `${timestamp}-${image.name.replace(/[^\w.-]/g, '_')}` ;
 
     const {data,error} = await supabase.storage.from(bucket)
                                         .upload(newName,image,{

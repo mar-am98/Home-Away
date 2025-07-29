@@ -1,16 +1,15 @@
 'use client'
 
-import { property } from '@prisma/client';
 import  { useState } from 'react'
 import { Button } from '../ui/button';
 
-function DescDetails({property}:{property:property}) {
+function DescDetails({description}:{description:string}) {
   
     const [show,setShow] = useState(false);
 
-    const hideText = property.description.length > 300;
+    const hideText = description.length > 300;
 
-    const showText = show || !hideText ? property.description : property.description.slice(0,300)+ '...'
+    const showText = show || !hideText ? description : description.slice(0,300)+ '...'
   
     function handleShow(){
         setShow(show => !show);

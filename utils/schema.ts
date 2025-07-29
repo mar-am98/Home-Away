@@ -68,16 +68,8 @@ function validateImageFile(){
     const imgSize = 1024 * 1024;
     const acceptedFile = ['image/']
 
-    return z.instanceof(File).refine(
-                                    (file)=>{
-                                        return ! file || file.size <= imgSize;
-                                    }, 'file must be less than 1MB'
-                                )
-                            .refine(
-                                    (file)=>{
-                                        return ! file || acceptedFile.some((type)=>file.type.startsWith(type))
-                                    }, 'file must be an image'
-                                )
+    return z.instanceof(File).refine(file => !file || file.size <= imgSize, 'File must be less than 1MB')
+                             .refine(file => !file || acceptedFile.some(type => file.type.startsWith(type)), 'File must be an image');
                             
 }
 

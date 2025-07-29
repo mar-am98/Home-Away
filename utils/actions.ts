@@ -79,7 +79,9 @@ export async function createRentalForm(prevState:any,formData: FormData):Promise
                 ...validateFields,
                 amenities,
                 image: imagePath,
-                clerkId: user.id
+                clerkId: user.id,
+                userName: user.fullName ?? 'guest',
+                userImg: user.imageUrl ?? ''
             }
         })
         return {message:'Created Successfuly'}

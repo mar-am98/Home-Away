@@ -23,30 +23,31 @@ async function PropertiesDetails({params}:any) {
     fetchReviewStats(id)
   ]);
 
+  const {name,tagLine,image,description,amenities,location,userName,userImg} = property
   return (
     <section className='mt-12'>
-      <CrumbBread name={property.name}/>
+      <CrumbBread name={name}/>
 
       <div className='flex justify-between items-center'>
-        <h1 className='py-4 text-4xl font-bold capitalize'>{property.tagLine}</h1>
+        <h1 className='py-4 text-4xl font-bold capitalize'>{tagLine}</h1>
         <div className='flex gap-2'>
-          <ShareButton id={id} name={property.name}/>
+          <ShareButton id={id} name={name}/>
           <FavoriteToggleButton propertyID={property.id} />
         </div>
       </div>
 
       <div className='relative w-full h-120'>
-        <Image src={property.image} alt={property.name} fill quality={100} className='object-cover rounded mt-4' priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>     
+        <Image src={image} alt={name} fill quality={100} className='object-cover rounded mt-4' priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>     
       </div>
 
-      <div className='h-200 grid-cols-1 lg:grid lg:grid-cols-[2fr_1fr] gap-12 mt-12'>
+      <div className='h-fit grid-cols-1 lg:grid lg:grid-cols-[2fr_1fr] gap-12 mt-12'>
         <div>
           <StayDetails property={property} stats={stats}/>
-          <UserDetails />
+          <UserDetails userName={userName} userImg={userImg} />
           <Separator />
-          <DescDetails property={property}/>
-          <PlaceOffer property={property}/>
-          <StayLocation property={property} />
+          <DescDetails description={description}/>
+          <PlaceOffer amenities={amenities}/>
+          <StayLocation location={location} />
         </div>
         
         <div>
