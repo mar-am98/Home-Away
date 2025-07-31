@@ -12,7 +12,8 @@ import TextAreaInput from '@/components/form/TextAreaInput'
 import { Card } from '@/components/ui/card'
 import { fetchSingleProperty, updateProperty } from '@/utils/actions'
 
-async function EditPropertyPage({params}:{params:{id:string}}) {
+
+async function EditPropertyPage({params}:any) {
 
   const {id} = await params;
   const property = await fetchSingleProperty(id);
