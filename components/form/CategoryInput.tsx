@@ -5,15 +5,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { categoriesItem } from '@/utils/categoriesItem'
 
 
-function CategoryInput() {
-    const [select, setSelect] = useState('');
+function CategoryInput({defaultValue}:{defaultValue?:string}) {
+    const [select, setSelect] = useState(defaultValue || '');
   return (
     <div className="mb-2">
         <Label htmlFor='category' className='mb-2'>
             Categories
         </Label>
         <input type="hidden" name="category" value={select} />
-        <Select onValueChange={(value)=>setSelect(value)}>
+        <Select onValueChange={(value)=>setSelect(value)} defaultValue={defaultValue}>
             <SelectTrigger className='w-full' id='category'>
                 <SelectValue placeholder='Select a category' />
             </SelectTrigger>

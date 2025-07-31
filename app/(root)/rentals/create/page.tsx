@@ -34,7 +34,7 @@ function CreatePropertPage() {
           </div>
           <RentDetails />
           <Amenities />
-          <FormButton text='Create Rental'/>
+          <FormButton text='Create Rental' className='max-w-40' />
         </FormContainer>
       </Card>
     </section>

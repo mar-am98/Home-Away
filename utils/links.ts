@@ -22,7 +22,6 @@ export const pageLinks = {
     BOOKINGS: {href:'/bookings' , name:'Bookings'},
     REVIEWS: {href:'/reviews' , name:'Reviews'},
     RESERVATIONS: {href:'/reservations' , name:'Reservations'},
-    CREATRENTAL: {href:'/createRental' , name:'Create Rental'},
     MYRENTALS: {href:'/myRentals' , name:'My Rentals'},
     PROFILE: {href:'/profile' , name:'Profile'},
  } as const

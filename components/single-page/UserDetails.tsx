@@ -11,7 +11,8 @@ function UserDetails({userName,userImg}:{userName: string, userImg: string}) {
                 fill
                 className='object-cover rounded'
                 alt='prof-img'
-                priority
+                loading='lazy'
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
         </div>
         <div>

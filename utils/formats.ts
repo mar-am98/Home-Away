@@ -11,3 +11,13 @@ export default function FormatCurrency(amount:number){
     }).format(value)
 
 }
+
+
+export function formatDate(dateStr: string | Date) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}

@@ -1,9 +1,13 @@
-import React from 'react'
+import BookingTable from '@/components/booking/BookingTable'
+import { AllLeading } from '@/components/global/LoadingContainer'
+import React, { Suspense } from 'react'
 
-function BookingsPage() {
+function page() {
   return (
-    <div>BookingsPage</div>
+    <Suspense fallback={<AllLeading />}>
+      <BookingTable />
+    </Suspense>
   )
 }
 
-export default BookingsPage
+export default page

@@ -13,13 +13,13 @@ import ReactCountryFlag from 'react-country-flag';
 import { useState } from 'react';
 
 
-export default function CountryInput() {
-  const [country,setCountry] = useState('')
+export default function CountryInput({defaultValue}:{defaultValue?:string}) {
+  const [country,setCountry] = useState(defaultValue || '')
   return (
     <div className='mb-2'>
       <Label htmlFor="location" className='mb-2'>Country</Label>
       <input type='hidden' name='location' value={country} />
-      <Select onValueChange={(value)=>setCountry(value)}>
+      <Select onValueChange={(value)=>setCountry(value)} defaultValue={defaultValue}>
         <SelectTrigger className="w-full" id='location'>
           <SelectValue placeholder="Select a country" />
         </SelectTrigger>

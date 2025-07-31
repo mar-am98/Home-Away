@@ -7,13 +7,15 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import { Input } from '../ui/input';
 
 
-function RentDetails() {
-  type RoomLabel = 'guests' | 'bedrooms' | 'beds' | 'baths';
-  const [count,setCount]= useState({
-    guests: 0,
-    bedrooms: 0,
-    beds: 0,
-    baths: 0
+type RoomLabel = 'guests' | 'bedrooms' | 'beds' | 'baths';
+type RoomCount = { [key in RoomLabel]: number };
+
+function RentDetails({defaultValue}:{defaultValue?: Partial<RoomCount> }) {
+  const [count,setCount]= useState<RoomCount>({
+    guests: defaultValue?.guests ?? 0,
+    bedrooms: defaultValue?.bedrooms ?? 0,
+    beds: defaultValue?.beds ?? 0,
+    baths: defaultValue?.baths ?? 0,
   })
   const roomLabels:RoomLabel[] = ['guests', 'bedrooms', 'beds', 'baths']
   function increment(label: RoomLabel){

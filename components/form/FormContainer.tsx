@@ -1,4 +1,5 @@
 'use client'
+import { pageLinks } from '@/utils/links'
 import { actionFunction } from '@/utils/types'
 import { useRouter } from 'next/navigation'
 import React, { use, useActionState, useEffect, useTransition } from 'react'
@@ -20,7 +21,10 @@ function FormContainer({children,action}:FormProps) {
     const router = useRouter();
 
     useEffect(()=>{
-      if(state.message){
+      if(state.message === 'redirect'){
+        router.push(pageLinks.BOOKINGS.href)
+      }
+      else if(state.message){
         toast(state.message)
       }
 

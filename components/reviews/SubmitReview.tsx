@@ -29,7 +29,7 @@ function SubmitReview({id}:{id:string}) {
 
                             <RatingInput name='rating' />
                             <TextAreaInput name='comment' label='FeedBack' placeholder='Add comment..' defaultValue='Amazing Place!!!' />
-                            <FormButton text='submit' />
+                            <FormButton text='submit' className='max-w-40'/>
                           </FormContainer>
                         </Card>
                       )

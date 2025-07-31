@@ -3,7 +3,7 @@ import React from 'react'
 import { Checkbox } from '../ui/checkbox'
 import { Label } from '../ui/label'
 
-function Amenities() {
+function Amenities({defaultValue}:{defaultValue?:string[]}) {
   return (
     <div className='mt-10 mb-6 px-4'>
         <h3 className='text-lg font-medium mb-6'>Amenities</h3>
@@ -13,7 +13,7 @@ function Amenities() {
                     const Icon = item.icon
                     return(
                         <div className='flex items-center gap-4' key={item.label}>
-                            <Checkbox id={item.label} name='amenities' value={item.label} className='border-primary' />
+                            <Checkbox id={item.label} name='amenities' value={item.label} className='border-primary' defaultChecked={defaultValue?.includes(item.label)} />
                             <Label htmlFor={item.label} className='text-base mr-2'>
                                 {item.label}
                                 <Icon />

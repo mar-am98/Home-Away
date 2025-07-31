@@ -3,6 +3,7 @@ import FavoriteToggleButton from '@/components/favorites/FavoriteToggleButton';
 import PropertyReviews from '@/components/reviews/PropertyReviews';
 import SubmitReview from '@/components/reviews/SubmitReview';
 import CrumbBread from '@/components/single-page/CrumbBread'
+import DateCalendar from '@/components/single-page/DateCalendar';
 import DescDetails from '@/components/single-page/DescDetails';
 import PlaceOffer from '@/components/single-page/PlaceOffer';
 import ShareButton from '@/components/single-page/ShareButton';
@@ -10,7 +11,7 @@ import StayDetails from '@/components/single-page/StayDetails';
 import StayLocation from '@/components/single-page/StayLocation';
 import UserDetails from '@/components/single-page/UserDetails';
 import { Separator } from '@/components/ui/separator';
-import { fetchReviewStats, fetchSingleProperty } from '@/utils/actions';
+import { fetchReservedDates, fetchReviewStats, fetchSingleProperty } from '@/utils/actions';
 import Image from 'next/image';
 import React from 'react'
 
@@ -18,14 +19,15 @@ async function PropertiesDetails({params}:any) {
 
   const {id} = await params;
 
-  const [property, stats] = await Promise.all([
+  const [property, stats, rereservedDate] = await Promise.all([
     fetchSingleProperty(id),
-    fetchReviewStats(id)
+    fetchReviewStats(id),
+    fetchReservedDates(id),
   ]);
 
-  const {name,tagLine,image,description,amenities,location,userName,userImg} = property
+  const {name,tagLine,image,description,amenities,location,userName,userImg,price} = property
   return (
-    <section className='mt-12'>
+    <section className='mt-12 mx-1'>
       <CrumbBread name={name}/>
 
       <div className='flex justify-between items-center'>
@@ -51,7 +53,7 @@ async function PropertiesDetails({params}:any) {
         </div>
         
         <div>
-          
+          <DateCalendar propertyID={property.id} rereservedDate={rereservedDate} price={price} />
         </div>
       </div>
 

@@ -5,7 +5,7 @@ export const rentalSchema = z.object({
     name: z.string().min(6,{
                         message: 'name must be at least 6 characters.'
                      })
-                    .max(20,{
+                    .max(30,{
                         message: 'name must be less than 20 characters.'
                     }),
     tagLine: z.string().refine((tagLine)=>{
