@@ -22,12 +22,12 @@ function CreatePropertPage() {
         
         <FormContainer action={createRentalForm}>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
-            <InputForm name='name' type='text' placeholder='Property Name'/>
-            <InputForm name='tagLine' type='text' placeholder='Tagline' />
+            <InputForm name='name' type='text' placeholder='Property Name' defaultValue='Desert Bloom Retreat'/>
+            <InputForm name='tagLine' type='text' placeholder='Tagline' defaultValue='Tranquil desert home with pool and palms' />
             <PriceInput name='price'/>
             <CategoryInput />
             <div className="md:col-span-2">
-              <TextAreaInput name='description' placeholder='Add property description' />
+              <TextAreaInput name='description' placeholder='Add property description' defaultValue="This serene desert retreat offers 3 bedrooms, a private backyard oasis with a pool, and an open-concept layout filled with natural light. Cactus gardens and a modern Southwestern aesthetic make the space feel both stylish and grounded. Wake up to the soft desert sun, relax in a hammock under the palms, and cool off in the sparkling pool. Located minutes from hiking trails and golf courses, it's an ideal base for leisure or adventure With fast WiFi and a workstation, remote workers are welcome too."/>
             </div>
             <CountryInput />
             <ImageInput name='image' />
