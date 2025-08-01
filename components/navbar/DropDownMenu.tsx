@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { LuAlignLeft } from 'react-icons/lu'
