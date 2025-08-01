@@ -15,9 +15,9 @@ function PropertyRating({showReview = false,stats}:RateProp) {
   const rating = stats?.avg.toFixed(1);
   const countReview = stats?.count || 0;
 
-  const reviews = `(${countReview} Reviews)`
-
   if(!stats?.avg) return null
+
+  const reviews = `(${countReview} Reviews)`
   return (
     <span className="flex gap-1 items-center">
         <FaStar className='w-3 h-3 text-amber-500' />
