@@ -288,24 +288,29 @@ export async function fetchPropertyReviews(propertyID:string){
     return review;
 }
 
-export async function fetchReviewStats(propertyID:string){
-    const stats = await db.review.aggregate({
-        where:{
-            propertyID,
-        },
-        _avg:{
-            rating: true
-        },
-        _count:{
-            rating: true
-        }
-    });
+export async function fetchReviewStats(propertyID: string) {
+  if (!propertyID) {
+    throw new Error('propertyID is required');
+  }
 
-    return{
-        avg: stats._avg.rating || 0,
-        count: stats._count.rating
-    }
+  const stats = await db.review.aggregate({
+    where: {
+      propertyID,
+    },
+    _avg: {
+      rating: true,
+    },
+    _count: {
+      rating: true,
+    },
+  });
+
+  return {
+    avg: stats._avg?.rating || 0,
+    count: stats._count?.rating || 0,
+  };
 }
+
 
 
 export async function fetchUserReviews(){
