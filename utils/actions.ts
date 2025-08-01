@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import db from './db'
 import { clerkClient, currentUser } from '@clerk/nextjs/server';
 import { imageSchema, rentalSchema, reviewSchema, validateSchema } from './schema';
-import { uploadImage } from './supabase';
+// Dynamic import for uploadImage to avoid Supabase initialization during server-side rendering
 import { revalidatePath } from 'next/cache';
 import { pageLinks } from './links';
 
@@ -72,6 +72,9 @@ export async function createRentalForm(prevState:any,formData: FormData):Promise
 
         const validateFields = validateSchema(rentalSchema,allData);
         const validateImage = validateSchema(imageSchema,{image:file});
+        
+        // Dynamic import to avoid Supabase initialization during server-side rendering
+        const { uploadImage } = await import('./supabase');
         const imagePath = await uploadImage(validateImage.image)
 
         await db.property.create({
