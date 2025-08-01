@@ -1,10 +1,12 @@
-import { currentUser } from '@clerk/nextjs/server'
+'use client'
+
+import { useUser } from '@clerk/nextjs';
 import { LucideUserCircle2 } from 'lucide-react';
 import React from 'react'
 
-async function UserIcon() {
-  const profile = await currentUser();
-  const userImg = profile?.imageUrl
+function UserIcon() {
+  const {user} = useUser();
+  const userImg = user?.imageUrl
 
     if(userImg){
         return (

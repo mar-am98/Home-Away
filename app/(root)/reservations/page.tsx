@@ -35,7 +35,7 @@ async function ReservationPage() {
 
   return (
     <div className='mt-18'>
-      <div className='w-full my-12 h-25 grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+      <div className='w-full my-12 h-fit grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
         <div className='bg-muted rounded-xl border text-card-foreground shadow flex items-center justify-around py-4'>
           <p className='text-3xl font-bold capitalize'>properties</p>
           <p className='text-5xl font-extrabold text-primary'>{rentNum}</p>

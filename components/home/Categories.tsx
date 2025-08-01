@@ -5,7 +5,7 @@ import { categoriesItem } from '@/utils/categoriesItem';
 function Categories({search,category}:{search:string,category:string}) {
 
   return (
-    <div className='grid grid-cols-5 lg:grid-cols-10 gap-6 overflow-x-hidden py-8 mx-auto max-sm:hidden'>
+    <div className='grid max-sm:flex md:grid-cols-5 lg:grid-cols-10 gap-6 max-sm:overflow-scroll py-8 mx-auto'>
       {
         categoriesItem.map((item)=>{
           const searchTerm = search ? `&search=${search}` : '';
