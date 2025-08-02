@@ -1,12 +1,32 @@
 import React from 'react'
 import { Label } from '../ui/label'
 import { Input } from '../ui/input'
+import { showFileSizeToast } from '@/utils/fileValidation'
 
 function ImageInput({name}:{name:string}) {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const isValidSize = showFileSizeToast(file);
+      if (!isValidSize) {
+        // Clear the input if file is too large
+        e.target.value = '';
+      }
+    }
+  };
+
   return (
     <div className='mb-2'>
         <Label htmlFor={name} className='mb-2'>Image</Label>
-        <Input id={name} name={name} type='file' accept='image/*' required className='max-w-90'/>
+        <Input 
+          id={name} 
+          name={name} 
+          type='file' 
+          accept='image/*' 
+          required 
+          className='max-w-90'
+          onChange={handleFileChange}
+        />
     </div>
   )
 }

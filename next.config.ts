@@ -3,6 +3,11 @@ import { hostname } from "os";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb', // Increase body size limit for file uploads
+    },
+  },
   images : {
   remotePatterns: [
     {

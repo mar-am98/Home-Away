@@ -4,6 +4,7 @@ import { actionFunction } from '@/utils/types'
 import { useRouter } from 'next/navigation'
 import React, { use, useActionState, useEffect, useTransition } from 'react'
 import { toast } from 'sonner'
+import { validateFileSize } from '@/utils/fileValidation'
 
 interface FormProps{
     children: React.ReactNode,
@@ -36,9 +37,23 @@ function FormContainer({children,action}:FormProps) {
       
     },[state])
 
+    const handleSubmit = (formData: FormData) => {
+      // Check for file inputs and validate size before submission
+      const imageFile = formData.get('image') as File;
+      if (imageFile && imageFile.size > 0) {
+        const { isValid } = validateFileSize(imageFile);
+        if (!isValid) {
+          toast.error('Please select a smaller image file before submitting');
+          return;
+        }
+      }
+      
+      // If validation passes, submit the form
+      setAction(formData);
+    };
 
   return (
-    <form action={setAction}>
+    <form action={handleSubmit}>
         {children}
     </form>
   )
