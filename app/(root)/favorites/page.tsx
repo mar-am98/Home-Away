@@ -12,14 +12,16 @@ async function FavoritesPage() {
     </div>
   )
 
-  const stats = await Promise.all(
-    favorites.map((fav) => fetchReviewStats(fav.property.id))
-  );
+  // const statsList = [];
+  // for (const fav of favorites) {
+  //   const stat = await fetchReviewStats(fav.property.id);
+  //   statsList.push(stat);
+  // }
 
   return (
     <section className="mt-15 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-12">
       {favorites.map((fav,i)=>(
-        <PropertyCard property={fav.property}  key={fav.id} stats={stats[i]}/>
+        <PropertyCard property={fav.property}  key={fav.id} />
       ))}
     </section>
   )

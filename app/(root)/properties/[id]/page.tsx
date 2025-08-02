@@ -18,12 +18,10 @@ import React from 'react'
 async function PropertiesDetails({params}:any) {
 
   const {id} = await params;
+  const property = await fetchSingleProperty(id);
+  const stats = await fetchReviewStats(id);
+  const rereservedDate = await fetchReservedDates(id);
 
-  const [property, stats, rereservedDate] = await Promise.all([
-    fetchSingleProperty(id),
-    fetchReviewStats(id),
-    fetchReservedDates(id),
-  ]);
 
   const {name,tagLine,image,description,amenities,location,userName,userImg,price} = property
   return (

@@ -10,12 +10,13 @@ interface RateProp{
     count: number
   }
 }
-
 function PropertyRating({showReview = false,stats}:RateProp) {
+
+  if(!stats?.avg) return null
+
   const rating = stats?.avg.toFixed(1);
   const countReview = stats?.count || 0;
 
-  if(!stats?.avg) return null
 
   const reviews = `(${countReview} Reviews)`
   return (

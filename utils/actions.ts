@@ -289,21 +289,30 @@ export async function fetchPropertyReviews(propertyID:string){
 }
 
 export async function fetchReviewStats(propertyID:string){
-    const stats = await db.review.aggregate({
-        where:{
-            propertyID,
-        },
-        _avg:{
-            rating: true
-        },
-        _count:{
-            rating: true
-        }
-    });
+    try{
+        const stats = await db.review.aggregate({
+            where:{
+                propertyID,
+            },
+            _avg:{
+                rating: true
+            },
+            _count:{
+                rating: true
+            }
+        });
 
-    return{
-        avg: stats._avg.rating || 0,
-        count: stats._count.rating
+        return{
+            avg: stats._avg.rating || 0,
+            count: stats._count.rating
+        }
+    }
+    catch(e){
+         console.error('Error fetching review stats:', e);
+        return {
+        avg: 0,
+        count: 0,
+        };
     }
 }
 

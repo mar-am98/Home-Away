@@ -7,19 +7,21 @@ import FormatCurrency from '@/utils/formats';
 import PropertyRating from '../single-page/PropertyRating';
 import Link from 'next/link';
 import { pageLinks } from '@/utils/links';
+import { fetchReviewStats } from '@/utils/actions';
 
-interface propertyProps{
-    property: property,
-    stats: {
-        avg: number,
-        count: number
-    }
-}
+// interface propertyProps{
+//     ,
+//     stats?: {
+//         avg: number,
+//         count: number
+//     }
+// }
 
-async function PropertyCard({property,stats}:propertyProps) {
+async function PropertyCard({property}:{property: property}) {
     
-    const {image,name,tagLine,price,location} = property;
+    const {id,image,name,tagLine,price,location} = property;
     const price$ = FormatCurrency(price);
+    const stats = await fetchReviewStats(id);
 
 
     return (
