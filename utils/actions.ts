@@ -293,22 +293,31 @@ export async function fetchReviewStats(propertyID: string) {
     throw new Error('propertyID is required');
   }
 
-  const stats = await db.review.aggregate({
-    where: {
-      propertyID,
-    },
-    _avg: {
-      rating: true,
-    },
-    _count: {
-      rating: true,
-    },
-  });
+  try {
+    const stats = await db.review.aggregate({
+      where: {
+        propertyID,
+      },
+      _avg: {
+        rating: true,
+      },
+      _count: {
+        rating: true,
+      },
+    });
 
-  return {
-    avg: stats._avg?.rating || 0,
-    count: stats._count?.rating || 0,
-  };
+    return {
+      avg: stats._avg?.rating || 0,
+      count: stats._count?.rating || 0,
+    };
+  } catch (error) {
+    console.error('Error fetching review stats:', error);
+    // Return default values if there's an error
+    return {
+      avg: 0,
+      count: 0,
+    };
+  }
 }
 
 
