@@ -1,15 +1,15 @@
 import React from 'react'
 import { Label } from '../ui/label'
 import { Input } from '../ui/input'
-import { showFileSizeToast } from '@/utils/fileValidation'
+import { validateImageWithToast } from '@/utils/clientValidation'
 
 function ImageInput({name}:{name:string}) {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const isValidSize = showFileSizeToast(file);
-      if (!isValidSize) {
-        // Clear the input if file is too large
+      const isValid = validateImageWithToast(file);
+      if (!isValid) {
+        // Clear the input if file is invalid
         e.target.value = '';
       }
     }
