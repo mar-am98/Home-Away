@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { hostname } from "os";
+
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -18,7 +18,12 @@ const nextConfig: NextConfig = {
       hostname: 'img.clerk.com',
     },
   ]
-  }
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
+  },
 };
 
 export default nextConfig;

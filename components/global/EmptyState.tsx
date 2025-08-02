@@ -14,7 +14,7 @@ interface EmptyProp{
 function EmptyState({heading,message,actionLabel}:EmptyProp) {
   const router = useRouter();
   return (
-    <div>
+    <div className='overflow-x-hidden'>
         <h3 className='text-2xl font-bold capitalize mb-2'>{heading}</h3>
         <p className='text-lg w-120'>{message}</p>
         <Button className='mt-4 p-6 cursor-pointer capitalize text-base'
