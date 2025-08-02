@@ -6,7 +6,7 @@ import { MdFavorite } from 'react-icons/md'
 function CardSignButton() {
   return (
     <SignInButton mode='modal'>
-        <Button size={'icon'} variant={'outline'} className='cursor-pointer absolute right-2 top-2'>
+        <Button size={'icon'} variant={'outline'} className='cursor-pointer'>
             <MdFavorite />
         </Button>
     </SignInButton>

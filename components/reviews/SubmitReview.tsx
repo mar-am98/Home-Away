@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Card } from '../ui/card'
 import FormContainer from '../form/FormContainer'
 import { createReviewAction } from '@/utils/actions'
-import { useUser } from '@clerk/nextjs'
+import { SignedIn, useUser } from '@clerk/nextjs'
 import RatingInput from './RatingInput'
 import TextAreaInput from '../form/TextAreaInput'
 import FormButton from '../form/FormButton'
@@ -14,6 +14,7 @@ function SubmitReview({id}:{id:string}) {
   const [show,setShow] = useState(false);
 
   return (
+    <SignedIn>
       <div className='my-10'>
             <Button onClick={()=>setShow((prev)=>!prev)} >
               Leave a Review
@@ -35,6 +36,7 @@ function SubmitReview({id}:{id:string}) {
                       )
             }
       </div>
+    </SignedIn>
   )
 }
 

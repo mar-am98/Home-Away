@@ -3,8 +3,9 @@ import React from 'react'
 import { Separator } from '../ui/separator';
 import FormContainer from '../form/FormContainer';
 import { createResrvation } from '@/utils/actions';
-import { Button } from '../ui/button';
 import FormButton from '../form/FormButton';
+import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
+import { Button } from '../ui/button';
 
 interface ResProps{
     nights: number,
@@ -61,7 +62,18 @@ function ReservedAction({checkIn,checkOut,nights,total,propertyID}:{checkIn:Date
             <input type="hidden" name="nights" value={nights} />
             <input type="hidden" name="total" value={total} />
 
-            <FormButton text='reserve' className='w-full mt-6 text-lg' />
+            <SignedIn>
+                <FormButton text='reserve' className='w-full mt-6 text-lg' />
+            </SignedIn>
+
+            <SignedOut >
+                <SignInButton mode='modal'>
+                    <Button type='button' className='w-full mt-6 text-lg'>
+                        Sign In To Complete Booking
+                    </Button>
+                </SignInButton>
+            </SignedOut>
+
         </FormContainer>
     )
 }

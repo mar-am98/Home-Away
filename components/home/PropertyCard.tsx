@@ -9,13 +9,6 @@ import Link from 'next/link';
 import { pageLinks } from '@/utils/links';
 import { fetchReviewStats } from '@/utils/actions';
 
-// interface propertyProps{
-//     ,
-//     stats?: {
-//         avg: number,
-//         count: number
-//     }
-// }
 
 async function PropertyCard({property}:{property: property}) {
     

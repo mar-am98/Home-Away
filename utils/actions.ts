@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import db from './db'
-import { clerkClient, currentUser } from '@clerk/nextjs/server';
+import {  currentUser } from '@clerk/nextjs/server';
 import { imageSchema, rentalSchema, reviewSchema, validateSchema } from './schema';
 import { uploadImage } from './supabase';
 import { revalidatePath } from 'next/cache';

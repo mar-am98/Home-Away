@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { useUser } from '@clerk/nextjs'
 import CardSignButton from './CardSignButton'
 import FavoriteToggleForm from './FavoriteToggleForm'
 import { auth } from '@clerk/nextjs/server';

@@ -12,11 +12,6 @@ async function FavoritesPage() {
     </div>
   )
 
-  // const statsList = [];
-  // for (const fav of favorites) {
-  //   const stat = await fetchReviewStats(fav.property.id);
-  //   statsList.push(stat);
-  // }
 
   return (
     <section className="mt-15 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 gap-y-12">
